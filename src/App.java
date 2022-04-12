@@ -13,7 +13,7 @@ public class App {
             try {
                 System.out.println("Select necessary action for execution or exit");
                 System.out.println("1 - Create new task");
-                System.out.println("2 - Edit tasks");
+                System.out.println("2 - Edit/Review tasks");
                 System.out.println("3 - Exit");
                 System.out.println("\n");
                 choice = Byte.parseByte(br.readLine());
@@ -28,7 +28,7 @@ public class App {
             }
             switch (choice) {
                 case 1:
-                    System.out.println("Create new task");
+                    NewTask.createNewTask();
                     break;
                 case 2:
                     EditMenu.showEditMenu();
