@@ -55,10 +55,5 @@ public class EditTaskMenu {
             }// end switch
         } while (flag || choice != 7);
 
-        try {
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
