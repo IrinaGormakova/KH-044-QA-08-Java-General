@@ -50,10 +50,5 @@ public class EditMenu {
             }// end switch
         } while (flag || choice2 != 6);
 
-        try {
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
