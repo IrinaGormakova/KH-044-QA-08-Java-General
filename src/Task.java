@@ -1,12 +1,9 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.time.LocalDate;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.regex.*;
 
-public class Task {
-    public static int currentID=0;
+
+public class Task implements Serializable {
 
     private int ID;
     private String priority;
@@ -81,22 +78,16 @@ public class Task {
         this.executionDate = executionDate;
     }
 
-    public Task(int ID, String priority, String status, String body, String assignee, String email, LocalDate creationDate, LocalDate executionDate) {
-        this.ID = ID;
-        this.priority = priority;
-        this.status = status;
-        this.body = body;
-        this.assignee = assignee;
-        this.email = email;
-        this.creationDate = creationDate;
-        this.executionDate = executionDate;
-    }
 
-    public Task() {
+    public Task(int currentID) {
         this.priority = "planned";
         this.status = "new";
         this.ID = currentID + 1;
         this.creationDate = LocalDate.now();
+        this.executionDate = LocalDate.now();
+        this.assignee = "current user";
+        this.email = "no email";
+        this.body = "empty";
 
     }
 
@@ -110,7 +101,7 @@ public class Task {
         boolean flag;
         byte choice=-1;
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Do you want to change current priority: "+this.getPriority()+"? Please, select necessary priority or press ENTER to continue without changing");
         do {
             flag = false;
@@ -119,11 +110,11 @@ public class Task {
                 System.out.println("2 - Urgent");
                 System.out.println("3 - Delegated");
                 System.out.println("4 - Trivial");
-                System.out.println("\n");
-                if (br.readLine().equals("")) {
-                    choice = 0;
-                } else choice = Byte.parseByte(br.readLine());
-                if (choice < 1 || choice > 4) throw new MenuExceptions("Incorrect menu item");
+                String s=br1.readLine();
+                if (s.equals("")) {
+                    choice=0;
+                } else choice = Byte.parseByte(s);
+                if (choice < 0 || choice > 4) throw new MenuExceptions("Incorrect menu item");
             } catch (NumberFormatException | IOException e) {
                 System.out.println("Entered number is incorrect");
                 System.out.println(e.getMessage());
@@ -149,11 +140,7 @@ public class Task {
             default:
                 break;
         }// end switch
-        try {
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }//end changePriority
 
     public void changeEmail (){
@@ -185,10 +172,5 @@ public class Task {
             }
         }  while (flag);
 
-        try {
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

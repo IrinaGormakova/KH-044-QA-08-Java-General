@@ -4,7 +4,7 @@ import java.io.*;
 public class EditMenu {
     public static void showEditMenu() {
         boolean flag;
-        byte choice=0;
+        byte choice2=0;
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         do {
@@ -19,8 +19,8 @@ public class EditMenu {
                 System.out.println("5 - Export to file");
                 System.out.println("6 - Exit");
                 System.out.println("\n");
-                choice = Byte.parseByte(br.readLine());
-                if (choice < 1 || choice > 6) throw new MenuExceptions("Incorrect menu item");
+                choice2 = Byte.parseByte(br.readLine());
+                if (choice2 < 1 || choice2 > 6) throw new MenuExceptions("Incorrect menu item");
             } catch (NumberFormatException | IOException e) {
                 System.out.println("Entered number is incorrect");
                 System.out.println(e.getMessage());
@@ -29,7 +29,7 @@ public class EditMenu {
                 System.out.println(e1.getMessage());
                 flag = true;
             }
-            switch (choice) {
+            switch (choice2) {
                 case 1:
                     System.out.println("Review all tasks");
                     break;
@@ -48,7 +48,7 @@ public class EditMenu {
                 default:
                     break;
             }// end switch
-        } while (flag || choice != 6);
+        } while (flag || choice2 != 6);
 
         try {
             br.close();
