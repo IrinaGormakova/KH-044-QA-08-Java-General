@@ -15,4 +15,18 @@ public class ArrayTasks implements Serializable {
         myTasksList.add(newTask);
         currentID++;
     }
+    public void ReviewAllTasks(){
+        Task reviewAll = new Task(currentID);
+        for(int i = 0; i < reviewAll.getID(); i++) {
+            System.out.println(reviewAll.getID());
+        }
+        myTasksList.add(reviewAll);
+    }
+    public void ReviewTasksbyPriority(){
+        Task byPriority = new Task(currentID);
+        for(int i = 0; i < byPriority.getID(); i++) {
+            System.out.println(byPriority.getPriority());
+        }
+        myTasksList.add(byPriority);
+    }
 }

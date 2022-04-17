@@ -53,6 +53,7 @@ public class App {
                     break;
                 case 2:
                     EditMenu.showEditMenu();
+
                     break;
                 default:
                     break;

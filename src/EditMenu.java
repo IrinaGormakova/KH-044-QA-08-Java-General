@@ -1,11 +1,32 @@
 import java.io.*;
 
 
-public class EditMenu {
+public class  EditMenu {
     public static void showEditMenu() {
         boolean flag;
         byte choice2=0;
+        final String fileName = "ArrayTasks.dat";
 
+        //Deserialization
+        File file = new File(fileName);
+        ArrayTasks myArrayTask = null;
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                ObjectInputStream istream = new ObjectInputStream(new FileInputStream(file));
+                myArrayTask = (ArrayTasks) istream.readObject();
+                istream.close();
+            } catch (ClassNotFoundException | IOException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        if (myArrayTask == null) myArrayTask = new ArrayTasks();
+        //end Deserialization
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         do {
             flag = false;
@@ -31,10 +52,10 @@ public class EditMenu {
             }
             switch (choice2) {
                 case 1:
-                    System.out.println("Review all tasks");
+                    myArrayTask.ReviewAllTasks();
                     break;
                 case 2:
-                    System.out.println("Review tasks by priority");
+                    myArrayTask.ReviewTasksbyPriority();
                     break;
                 case 3:
                     System.out.println("Edit task by ID");
