@@ -1,3 +1,3 @@
 public enum TaskPriority {
-    URGENT, PLANNED, DELEGATED, TRIVIAL;
+    PLANNED, URGENT, DELEGATED, TRIVIAL;
 }

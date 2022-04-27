@@ -7,8 +7,8 @@ public class Task implements Serializable {
 
     private int ID;
     private String title;
-    private String priority;
-    private String status;
+    private TaskPriority priority;
+    private TaskStatus status;
     private String body;
     private String assignee;
     private String email;
@@ -16,8 +16,8 @@ public class Task implements Serializable {
     private LocalDate executionDate;
 
     public Task(int currentID) {
-        this.priority = "planned";
-        this.status = "new";
+        this.priority = TaskPriority.PLANNED;
+        this.status = TaskStatus.NEW;
         this.ID = currentID + 1;
         this.creationDate = LocalDate.now();
         this.executionDate = LocalDate.now();
@@ -42,19 +42,19 @@ public class Task implements Serializable {
         this.ID = ID;
     }
 
-    public String getPriority() {
+    public TaskPriority getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
+    public void setPriority(TaskPriority priority) {
         this.priority = priority;
     }
 
-    public String getStatus() {
+    public TaskStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(TaskStatus status) {
         this.status = status;
     }
 
@@ -104,7 +104,9 @@ public class Task implements Serializable {
                 "\n" + body + "\nAssignee: " + assignee+" email: "+email+"; production date :"+executionDate;
     }
 
+
     public void changePriority (){
+        /*
         boolean flag;
         byte choice=-1;
 
@@ -147,8 +149,9 @@ public class Task implements Serializable {
             default:
                 break;
         }// end switch
-
+*/
     }//end changePriority
+
 
     public void changeEmail (){
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

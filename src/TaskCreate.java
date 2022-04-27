@@ -1,13 +1,14 @@
 import java.time.LocalDate;
 
 public class TaskCreate {
-    ArrayTasks TasksList;
     Task task;
 
-//    private String title, description;
+    public TaskCreate(int currentID) {
+        this.task = new Task(currentID);
+    }
 
-    public TaskCreate() {
-        task = new Task(111);
+    public Task getNewTask(){
+        return task;
     }
 
     boolean setTitle(String title){
@@ -54,6 +55,28 @@ public class TaskCreate {
         return true;
     }
 
+    boolean setPriority( String priorityNumber ){
+        TaskPriority priority;
+        int priorityInt = Integer.parseInt(priorityNumber);
 
-
+        switch (priorityInt){
+            case 1 :
+                priority = TaskPriority.PLANNED;
+                break;
+            case 2 :
+                priority = TaskPriority.URGENT;
+                break;
+            case 3 :
+                priority = TaskPriority.DELEGATED;
+                break;
+            case 4 :
+                priority = TaskPriority.TRIVIAL;
+                break;
+            default:
+                priority = TaskPriority.PLANNED;
+        }
+        task.setPriority(priority);
+        System.out.println("Task priority set: "+priority);
+        return true;
+    }
 }
