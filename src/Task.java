@@ -6,6 +6,7 @@ import java.util.regex.*;
 public class Task implements Serializable {
 
     private int ID;
+    private String title;
     private String priority;
     private String status;
     private String body;
@@ -13,6 +14,25 @@ public class Task implements Serializable {
     private String email;
     private LocalDate creationDate;
     private LocalDate executionDate;
+
+    public Task(int currentID) {
+        this.priority = "planned";
+        this.status = "new";
+        this.ID = currentID + 1;
+        this.creationDate = LocalDate.now();
+        this.executionDate = LocalDate.now();
+        this.assignee = "current user";
+        this.email = "no email";
+        this.body = "empty";
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public int getID() {
         return ID;
@@ -76,19 +96,6 @@ public class Task implements Serializable {
 
     public void setExecutionDate(LocalDate executionDate) {
         this.executionDate = executionDate;
-    }
-
-
-    public Task(int currentID) {
-        this.priority = "planned";
-        this.status = "new";
-        this.ID = currentID + 1;
-        this.creationDate = LocalDate.now();
-        this.executionDate = LocalDate.now();
-        this.assignee = "current user";
-        this.email = "no email";
-        this.body = "empty";
-
     }
 
     @Override

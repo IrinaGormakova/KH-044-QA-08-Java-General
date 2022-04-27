@@ -2,7 +2,7 @@ import java.io.*;
 
 
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         boolean flag;
         byte choice = 0;
         final String fileName = "ArrayTasks.dat";
@@ -49,7 +49,8 @@ public class App {
             }
             switch (choice) {
                 case 1:
-                    myArrayTask.addTask();
+//                    myArrayTask.addTask();
+                    TaskCreateUI.showUI(myArrayTask);
                     break;
                 case 2:
                     EditMenu.showEditMenu();
