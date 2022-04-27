@@ -7,9 +7,9 @@ public class TaskCreate {
         this.task = new Task(currentID);
     }
 
-    public Task getNewTask(){
-        return task;
-    }
+//    public void addTaskToList(ArrayTasks myArrayTask){
+//        myArrayTask.
+//    }
 
     boolean setTitle(String title){
         title = title.trim();
