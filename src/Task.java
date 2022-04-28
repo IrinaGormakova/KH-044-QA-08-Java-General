@@ -6,13 +6,33 @@ import java.util.regex.*;
 public class Task implements Serializable {
 
     private int ID;
-    private String priority;
-    private String status;
+    private String title;
+    private TaskPriority priority;
+    private TaskStatus status;
     private String body;
     private String assignee;
     private String email;
     private LocalDate creationDate;
     private LocalDate executionDate;
+
+    public Task(int currentID) {
+        this.priority = TaskPriority.PLANNED;
+        this.status = TaskStatus.NEW;
+        this.ID = currentID + 1;
+        this.creationDate = LocalDate.now();
+        this.executionDate = LocalDate.now();
+        this.assignee = "current user";
+        this.email = "no email";
+        this.body = "empty";
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public int getID() {
         return ID;
@@ -22,19 +42,19 @@ public class Task implements Serializable {
         this.ID = ID;
     }
 
-    public String getPriority() {
+    public TaskPriority getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
+    public void setPriority(TaskPriority priority) {
         this.priority = priority;
     }
 
-    public String getStatus() {
+    public TaskStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(TaskStatus status) {
         this.status = status;
     }
 
@@ -78,26 +98,15 @@ public class Task implements Serializable {
         this.executionDate = executionDate;
     }
 
-
-    public Task(int currentID) {
-        this.priority = "planned";
-        this.status = "new";
-        this.ID = currentID + 1;
-        this.creationDate = LocalDate.now();
-        this.executionDate = LocalDate.now();
-        this.assignee = "current user";
-        this.email = "no email";
-        this.body = "empty";
-
-    }
-
     @Override
     public String toString() {
         return "ID: " + ID + "; priority: " + priority + "; status: " + status + "; created: " + creationDate +
                 "\n" + body + "\nAssignee: " + assignee+" email: "+email+"; production date :"+executionDate;
     }
 
+
     public void changePriority (){
+        /*
         boolean flag;
         byte choice=-1;
 
@@ -140,8 +149,9 @@ public class Task implements Serializable {
             default:
                 break;
         }// end switch
-
+*/
     }//end changePriority
+
 
     public void changeEmail (){
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
