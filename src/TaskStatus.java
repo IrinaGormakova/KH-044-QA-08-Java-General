@@ -4,6 +4,6 @@ public enum TaskStatus {
     @Override
     public String toString() {
         String priorityName = super.toString();
-        return priorityName.substring(0, 1) + priorityName.substring(1).toLowerCase();
+        return priorityName.charAt(0) + priorityName.substring(1).toLowerCase();
     }
 }
