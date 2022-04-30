@@ -7,10 +7,6 @@ public class TaskCreate {
         this.task = new Task(currentID);
     }
 
-//    public void addTaskToList(ArrayTasks myArrayTask){
-//        myArrayTask.
-//    }
-
     boolean setTitle(String title){
         title = title.trim();
         if ( !title.matches(".{5,200}") ) {
@@ -21,7 +17,7 @@ public class TaskCreate {
         return true;
     }
 
-    boolean setDescription(String description){
+    boolean setDescription(String description){ // !!! SetBody
         description = description.trim();
         if ( !description.matches(".{20,500}") ) {
             System.out.println("! Description should be 20 - 500 symbols");
@@ -57,7 +53,13 @@ public class TaskCreate {
 
     boolean setPriority( String priorityNumber ){
         TaskPriority priority;
-        int priorityInt = Integer.parseInt(priorityNumber);
+        int priorityInt;
+        try {
+            priorityInt = Integer.parseInt(priorityNumber); // !! Exception
+        }
+        catch (Exception e){
+            priorityInt = 1;
+        }
 
         switch (priorityInt){
             case 1 :
