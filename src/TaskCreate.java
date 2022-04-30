@@ -51,34 +51,47 @@ public class TaskCreate {
         return true;
     }
 
-    boolean setPriority( String priorityNumber ){
+    boolean setPriority(String priorityNumber) {
         TaskPriority priority;
         int priorityInt;
         try {
             priorityInt = Integer.parseInt(priorityNumber);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             priorityInt = 1;
         }
 
-        switch (priorityInt){
-            case 1 :
+        switch (priorityInt) {
+            case 1:
                 priority = TaskPriority.PLANNED;
                 break;
-            case 2 :
+            case 2:
                 priority = TaskPriority.URGENT;
                 break;
-            case 3 :
+            case 3:
                 priority = TaskPriority.DELEGATED;
                 break;
-            case 4 :
+            case 4:
                 priority = TaskPriority.TRIVIAL;
                 break;
             default:
-                priority = TaskPriority.PLANNED;
+                priority = task.getPriority();
+                break;
         }
         task.setPriority(priority);
-        System.out.println("Task priority set: "+priority);
+        System.out.println("Task priority set: " + priority);
         return true;
     }
+
+    boolean setAssignee(String assigneeName) {
+        task.setAssignee(assigneeName);
+        task.setPriority(TaskPriority.DELEGATED);
+        System.out.println("Assignee has been changed successfully.");
+        System.out.println("Task priority has been changed to DELEGATED automatically.");
+        System.out.println("Please, set correct email to Assignee "+task.getAssignee());
+
+//add method setEmail
+
+        return true;
+    }
+
 }

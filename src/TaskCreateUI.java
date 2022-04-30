@@ -16,7 +16,7 @@ public class TaskCreateUI {
 
         while (true) { // Description
             System.out.println("Enter task description:");
-            if (taskCreate.setDescription(bufferedReader.readLine())) break;
+            if (taskCreate.setBody(bufferedReader.readLine())) break;
         }
 
         while (true) { // Date

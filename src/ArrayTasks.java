@@ -20,7 +20,7 @@ public class ArrayTasks implements Serializable {
     }
     public void reviewAll()
     {
-        myTasksList.stream()
+        myTasksList
                 .forEach(System.out::println);
         }
         public void byPriority(){
