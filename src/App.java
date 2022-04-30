@@ -49,11 +49,10 @@ public class App {
             }
             switch (choice) {
                 case 1:
-//                    myArrayTask.addTask();
                     TaskCreateUI.showUI(myArrayTask);
                     break;
                 case 2:
-                    EditMenu.showEditMenu();
+                    EditMenu.showEditMenu(myArrayTask);
                     break;
                 default:
                     break;
