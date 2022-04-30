@@ -10,20 +10,20 @@ public class TaskCreate {
     boolean setTitle(String title){
         title = title.trim();
         if ( !title.matches(".{5,200}") ) {
-            System.out.println("! Title should be 5 - 200 symbols");
+            System.out.println("! Title should be 5-200 symbols");
             return false;
         }
         task.setTitle(title);
         return true;
     }
 
-    boolean setDescription(String description){ // !!! SetBody
-        description = description.trim();
-        if ( !description.matches(".{20,500}") ) {
-            System.out.println("! Description should be 20 - 500 symbols");
+    boolean setBody(String body){
+        body = body.trim();
+        if ( !body.matches(".{20,500}") ) {
+            System.out.println("! Description should be 20-500 symbols");
             return false;
         }
-        task.setBody(description);
+        task.setBody(body);
         return true;
     }
 
@@ -55,7 +55,7 @@ public class TaskCreate {
         TaskPriority priority;
         int priorityInt;
         try {
-            priorityInt = Integer.parseInt(priorityNumber); // !! Exception
+            priorityInt = Integer.parseInt(priorityNumber);
         }
         catch (Exception e){
             priorityInt = 1;
