@@ -3,8 +3,9 @@ import java.time.LocalDate;
 public class TaskCreate {
     Task task;
 
-    public TaskCreate(int currentID) {
-        this.task = new Task(currentID);
+    public TaskCreate(int currentID, String assignee, String email) {
+
+        this.task = new Task(currentID, assignee, email);
     }
 
     boolean setTitle(String title){
@@ -84,10 +85,12 @@ public class TaskCreate {
 
     boolean setAssignee(String assigneeName) {
         task.setAssignee(assigneeName);
-        task.setPriority(TaskPriority.DELEGATED);
-        System.out.println("Assignee has been changed successfully.");
-        System.out.println("Task priority has been changed to DELEGATED automatically.");
-        System.out.println("Please, set correct email to Assignee "+task.getAssignee());
+        System.out.println("Assignee has been changed successfully");
+        if (!task.getPriority().toString().equals("Delegated")) {
+            task.setPriority(TaskPriority.DELEGATED);
+            System.out.println("Task priority has been changed to DELEGATED automatically");
+        }
+        System.out.println("Please, set correct email for Assignee "+task.getAssignee());
 
 //add method setEmail
 

@@ -7,25 +7,48 @@ import java.util.ArrayList;
 public class ArrayTasks implements Serializable {
     ArrayList<Task> myTasksList = new ArrayList<>();
     public int currentID = 0;
+    private String author = "Irina Gormakova";
+    private String emailAuthor = "gormakova.ira@gmail.com";
+    private String password = "*********";
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getEmailAuthor() {
+        return emailAuthor;
+    }
+
+    public void setEmailAuthor(String emailAuthor) {
+        this.emailAuthor = emailAuthor;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public void addTask (){
-        Task newTask=new Task(currentID);
-        System.out.println("New task ID "+newTask.getID()+" was created");
-        newTask.changePriority();
-       // newTask.changeEmail();
 
-        //...continue
-        myTasksList.add(newTask);
+
         currentID++;
     }
-    public void reviewAll()
-    {
+
+    public void reviewAll() {
         myTasksList
                 .forEach(System.out::println);
-        }
-        public void byPriority(){
-            boolean flag;
-            byte choice=-1;
+    }
+
+    public void byPriority() {
+        boolean flag;
+        byte choice = -1;
 
             BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Which priority of task u wish to see");
@@ -36,11 +59,8 @@ public class ArrayTasks implements Serializable {
                     System.out.println("2 - Urgent");
                     System.out.println("3 - Delegated");
                     System.out.println("4 - Trivial");
-                    String s=br1.readLine();
-                    if (s.equals("")) {
-                        choice=0;
-                    } else choice = Byte.parseByte(s);
-                    if (choice < 0 || choice > 4) throw new MenuExceptions("Incorrect menu item");
+                    choice = Byte.parseByte(br1.readLine());
+                    if (choice < 1 || choice > 4) throw new MenuExceptions("Incorrect menu item");
                 } catch (NumberFormatException | IOException e) {
                     System.out.println("Entered number is incorrect");
                     System.out.println(e.getMessage());
@@ -53,25 +73,25 @@ public class ArrayTasks implements Serializable {
             switch (choice) {
                 case 1:
                     myTasksList.stream()
-                            .filter(x -> x.getPriority().equals("planned"))
+                            .filter(x -> x.getPriority().toString().equals("Planned"))
                             .forEach(System.out::println);
                     System.out.println(" ");
                     break;
                 case 2:
                     myTasksList.stream()
-                            .filter(x -> x.getPriority().equals("urgent"))
+                            .filter(x -> x.getPriority().toString().equals("Urgent"))
                             .forEach(System.out::println);
                     System.out.println(" ");
                     break;
                 case 3:
                     myTasksList.stream()
-                            .filter(x -> x.getPriority().equals("delegated"))
+                            .filter(x -> x.getPriority().toString().equals("Delegated"))
                             .forEach(System.out::println);
                     System.out.println(" ");
                     break;
                 case 4:
                     myTasksList.stream()
-                            .filter(x -> x.getPriority().equals("trivial"))
+                            .filter(x -> x.getPriority().toString().equals("Trivial"))
                             .forEach(System.out::println);
                     System.out.println(" ");
                     break;
