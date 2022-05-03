@@ -2,7 +2,6 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.regex.*;
 
-
 public class Task implements Serializable {
 
     private int ID;
@@ -99,7 +98,7 @@ public class Task implements Serializable {
     }
 
     @Override
-    public String toString() {
+    public String toString() { //  add title
         return "ID: " + ID + "; priority: " + priority + "; status: " + status + "; created: " + creationDate +
                 "\n" + body + "\nAssignee: " + assignee+" email: "+email+"; production date :"+executionDate;
     }
