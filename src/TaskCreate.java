@@ -4,7 +4,6 @@ public class TaskCreate {
     Task task;
 
     public TaskCreate(int currentID, String assignee, String email) {
-
         this.task = new Task(currentID, assignee, email);
     }
 
@@ -83,6 +82,10 @@ public class TaskCreate {
         task.setPriority(priority);
         System.out.println("Task priority set: " + priority);
         return true;
+    }
+
+    TaskPriority getPriority(){
+        return task.getPriority();
     }
 
     boolean setAssignee(String assigneeName) {
