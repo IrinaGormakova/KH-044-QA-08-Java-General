@@ -22,6 +22,7 @@ public class Task implements Serializable {
         this.executionDate = LocalDate.now();
         this.assignee = assignee;
         this.email = email;
+        this.title = "New Task / ID-" + this.ID;
         this.body = "empty";
     }
 
