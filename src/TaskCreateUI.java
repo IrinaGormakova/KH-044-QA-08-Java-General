@@ -3,8 +3,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class TaskCreateUI {
-    static void showUI(ArrayTasks myArrayTask)  {
-        TaskCreate taskCreate = new TaskCreate(myArrayTask.currentID);
+
+    static void showUI(ArrayTasks myArrayTask) throws IOException {
+        TaskCreate taskCreate = new TaskCreate(myArrayTask.currentID, myArrayTask.getAuthor(), myArrayTask.getEmailAuthor());
+        SendEmails emailSender = new SendEmails(myArrayTask.getEmailAuthor(), myArrayTask.getPassword(), myArrayTask.getPassword());
+
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("TASK CREATING: \n");

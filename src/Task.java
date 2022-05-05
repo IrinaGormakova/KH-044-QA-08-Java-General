@@ -14,14 +14,14 @@ public class Task implements Serializable {
     private LocalDate creationDate;
     private LocalDate executionDate;
 
-    public Task(int currentID) {
+    public Task(int currentID, String assignee, String email) {
         this.priority = TaskPriority.PLANNED;
         this.status = TaskStatus.NEW;
         this.ID = currentID + 1;
         this.creationDate = LocalDate.now();
         this.executionDate = LocalDate.now();
-        this.assignee = "current user";
-        this.email = "no email";
+        this.assignee = assignee;
+        this.email = email;
         this.body = "empty";
     }
 
@@ -171,14 +171,11 @@ public class Task implements Serializable {
                    } else throw new MenuExceptions("Incorrect email address. Try again or press ENTER to continue without changing");
                 }
 
-            } catch (IOException e) {
+            } catch (MenuExceptions | IOException e) {
                 System.out.println(e.getMessage());
                 flag = true;
             }
-            catch (MenuExceptions ex) {
-                System.out.println(ex.getMessage());
-                flag = true;
-            }
+
         }  while (flag);
 
     }

@@ -1,10 +1,14 @@
 import java.io.*;
+import java.util.ArrayList;
 
 
 public class EditMenu {
-    public static void showEditMenu() {
+
+    public static void showEditMenu(ArrayTasks myArrayTask) {
         boolean flag;
-        byte choice2=0;
+        byte choice2 = 0;
+        SendEmails emailSender = new SendEmails(myArrayTask.getEmailAuthor(), myArrayTask.getPassword(), myArrayTask.getAuthor());
+        CsvReport reports = new CsvReport();
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         do {
@@ -31,19 +35,21 @@ public class EditMenu {
             }
             switch (choice2) {
                 case 1:
-                    System.out.println("Review all tasks");
+                    myArrayTask.reviewAll();
                     break;
                 case 2:
-                    System.out.println("Review tasks by priority");
+                    myArrayTask.byPriority();
                     break;
                 case 3:
                     System.out.println("Edit task by ID");
                     break;
                 case 4:
-                    System.out.println("Send reports");
+                    System.out.println("Sending report...");
+                    emailSender.sendCsvReport(reports.givenTasks_ToCsvFile(myArrayTask.myTasksList));
                     break;
                 case 5:
-                    System.out.println("Export to file");
+                    System.out.println("Exporting report to csv file...");
+                    System.out.println("File " + reports.givenTasks_ToCsvFile(myArrayTask.myTasksList) + "has been created successfully");
                     break;
                 default:
                     break;
