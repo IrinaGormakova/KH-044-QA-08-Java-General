@@ -99,8 +99,18 @@ public class Task implements Serializable {
 
     @Override
     public String toString() { //  add title
-        return "ID: " + ID + "; priority: " + priority + "; status: " + status + "; created: " + creationDate +
-                "\n" + body + "\nAssignee: " + assignee+" email: "+email+"; production date :"+executionDate;
+        return "ID: " + ID + " | PRI: " + priority + " | " + title + " | EXT:"+executionDate;
+    }
+
+    public String viewAllDetails(){
+        return "ID: " + ID + " | Priority: " + priority + " | Status: " + status + " | \n " +
+                "Created date: " + creationDate + "\n " +
+                "Execution date: " + executionDate + "\n " +
+                "Title: \n " +
+                title + "\n" +
+                "Body \n " +
+                body + "\n " +
+                "Assignee name: " + assignee + " Assignee email: " + email;
     }
 
 

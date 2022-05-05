@@ -59,7 +59,7 @@ public class TaskCreate {
         try {
             priorityInt = Integer.parseInt(priorityNumber);
         } catch (Exception e) {
-            priorityInt = 1;
+            priorityInt = 0; // 0 = choose default value if catch exception
         }
 
         switch (priorityInt) {
