@@ -82,10 +82,6 @@ public class TaskCreate {
         return true;
     }
 
-    TaskPriority getPriority() {
-        return task.getPriority();
-    }
-
     boolean isDelegated() {
         if (task.getPriority() == TaskPriority.DELEGATED) return true;
         return false;
