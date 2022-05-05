@@ -109,7 +109,7 @@ public class Task implements Serializable {
                 "Execution date: " + executionDate + "\n " +
                 "Title: \n " +
                 title + "\n" +
-                "Body \n " +
+                "Body: \n " +
                 body + "\n " +
                 "Assignee name: " + assignee + " Assignee email: " + email;
     }
