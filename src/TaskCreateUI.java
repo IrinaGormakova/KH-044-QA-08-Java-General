@@ -53,7 +53,7 @@ public class TaskCreateUI {
             }
         }
 
-        if(taskCreate.getPriority() == TaskPriority.DELEGATED){
+        if(taskCreate.isDelegated()){
             while (true){
                 System.out.println("Enter Assignee name:");
                 break;
