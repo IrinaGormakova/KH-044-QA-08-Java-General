@@ -106,6 +106,12 @@ public class ArrayTasks implements Serializable {
                 default:
                     break;
             }
+        int id =0;
+        Scanner scanner = new Scanner(System.in);
+        id= scanner.nextInt();
+        int finalId=id;
+        myTasksList.stream()
+                .filter(x->x.getID()==finalId).peek(x ->System.out.println(x.toString()));
     }
     }
 
