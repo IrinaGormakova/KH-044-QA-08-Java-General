@@ -1,4 +1,6 @@
 import java.time.LocalDate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TaskCreate {
     Task task;
@@ -6,6 +8,11 @@ public class TaskCreate {
     public TaskCreate(int currentID, String assignee, String email) {
 
         this.task = new Task(currentID, assignee, email);
+    }
+
+    public TaskCreate(Task myTask) {
+
+        this.task = myTask;
     }
 
     boolean setTitle(String title){
@@ -84,17 +91,36 @@ public class TaskCreate {
     }
 
     boolean setAssignee(String assigneeName) {
+
+        assigneeName = assigneeName.trim();
+        if ( !assigneeName.matches(".{3,30}") ) {
+            System.out.println("! Assignee name should be 3-30 symbols");
+            return false;
+        }
         task.setAssignee(assigneeName);
         System.out.println("Assignee has been changed successfully");
-        if (!task.getPriority().toString().equals("Delegated")) {
+        if (!task.getPriority().equals(TaskPriority.DELEGATED)) {
             task.setPriority(TaskPriority.DELEGATED);
             System.out.println("Task priority has been changed to DELEGATED automatically");
         }
-        System.out.println("Please, set correct email for Assignee "+task.getAssignee());
-
-//add method setEmail
-
         return true;
+    }
+
+    boolean setEmail(String emailName) {
+
+        String pattern = "\\w+(\\.\\w+)*@(\\w+\\.)+\\w+";
+        Pattern p = Pattern.compile(pattern);
+
+        emailName=emailName.trim();
+        Matcher m = p.matcher(emailName);
+        if (m.matches()) {
+            task.setEmail(emailName);
+            System.out.println("Assignee's email has been changed successfully");
+            return true;
+        } else {
+            System.out.println("Incorrect email address");
+            return false;
+        }
     }
 
 }

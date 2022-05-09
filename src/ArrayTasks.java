@@ -35,7 +35,7 @@ public class ArrayTasks implements Serializable {
         this.password = password;
     }
 
-    public void addTask (){
+    public void addTask() {
 
 
         currentID++;
@@ -50,54 +50,86 @@ public class ArrayTasks implements Serializable {
         boolean flag;
         byte choice = -1;
 
-            BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("Which priority of task u wish to see");
-            do {
-                flag = false;
-                try {
-                    System.out.println("1 - Planned");
-                    System.out.println("2 - Urgent");
-                    System.out.println("3 - Delegated");
-                    System.out.println("4 - Trivial");
-                    choice = Byte.parseByte(br1.readLine());
-                    if (choice < 1 || choice > 4) throw new MenuExceptions("Incorrect menu item");
-                } catch (NumberFormatException | IOException e) {
-                    System.out.println("Entered number is incorrect");
-                    System.out.println(e.getMessage());
-                    flag = true;
-                } catch (MenuExceptions e1) {
-                    System.out.println(e1.getMessage());
-                    flag = true;
-                }
-            }  while (flag);
-            switch (choice) {
-                case 1:
-                    myTasksList.stream()
-                            .filter(x -> x.getPriority().toString().equals("Planned"))
-                            .forEach(System.out::println);
-                    System.out.println(" ");
-                    break;
-                case 2:
-                    myTasksList.stream()
-                            .filter(x -> x.getPriority().toString().equals("Urgent"))
-                            .forEach(System.out::println);
-                    System.out.println(" ");
-                    break;
-                case 3:
-                    myTasksList.stream()
-                            .filter(x -> x.getPriority().toString().equals("Delegated"))
-                            .forEach(System.out::println);
-                    System.out.println(" ");
-                    break;
-                case 4:
-                    myTasksList.stream()
-                            .filter(x -> x.getPriority().toString().equals("Trivial"))
-                            .forEach(System.out::println);
-                    System.out.println(" ");
-                    break;
-                default:
-                    break;
+        BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Which priority of task u wish to see");
+        do {
+            flag = false;
+            try {
+                System.out.println("1 - Planned");
+                System.out.println("2 - Urgent");
+                System.out.println("3 - Delegated");
+                System.out.println("4 - Trivial");
+                choice = Byte.parseByte(br1.readLine());
+                if (choice < 1 || choice > 4) throw new MenuExceptions("Incorrect menu item");
+            } catch (NumberFormatException | IOException e) {
+                System.out.println("Entered number is incorrect");
+                System.out.println(e.getMessage());
+                flag = true;
+            } catch (MenuExceptions e1) {
+                System.out.println(e1.getMessage());
+                flag = true;
             }
+        } while (flag);
+        switch (choice) {
+            case 1:
+                myTasksList.stream()
+                        .filter(x -> x.getPriority().equals(TaskPriority.PLANNED))
+                        .forEach(System.out::println);
+                System.out.println(" ");
+                break;
+            case 2:
+                myTasksList.stream()
+                        .filter(x -> x.getPriority().equals(TaskPriority.URGENT))
+                        .forEach(System.out::println);
+                System.out.println(" ");
+                break;
+            case 3:
+                myTasksList.stream()
+                        .filter(x -> x.getPriority().equals(TaskPriority.DELEGATED))
+                        .forEach(System.out::println);
+                System.out.println(" ");
+                break;
+            case 4:
+                myTasksList.stream()
+                        .filter(x -> x.getPriority().equals(TaskPriority.TRIVIAL))
+                        .forEach(System.out::println);
+                System.out.println(" ");
+                break;
+            default:
+                break;
+        }
+    }//end byPriority()
+
+    public Task selectByID() {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        boolean flag;
+
+        System.out.println("Full task list:");
+        myTasksList
+                .forEach(System.out::println);
+        int modifiedID;
+        do {
+            flag = false;
+            System.out.println("Please, enter ID of task you want to modify or press ENTER to continue without changing");
+            try {
+                if (!br.readLine().equals("")) {
+                    modifiedID = Integer.parseInt(br.readLine());
+                } else return null;
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+                modifiedID = 0;
+            }
+            int finalModifiedID = modifiedID;
+            if (myTasksList.stream().noneMatch(x -> x.getID() == finalModifiedID)) {
+                System.out.println("Task ID " + finalModifiedID + " wasn't found");
+                flag = true;
+            }
+        } while(flag);
+        int finalModifiedID1 = modifiedID;
+        return myTasksList.stream().filter(x -> x.getID() == finalModifiedID1).findFirst().get();
     }
-    }
+
+
+}
 
