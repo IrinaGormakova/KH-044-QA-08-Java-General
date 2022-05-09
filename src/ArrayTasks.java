@@ -36,9 +36,8 @@ public class ArrayTasks implements Serializable {
         this.password = password;
     }
 
-    public void addTask (){
-
-
+    public void addTask (Task newTask){
+        myTasksList.add(newTask);
         currentID++;
     }
 

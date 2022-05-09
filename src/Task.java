@@ -2,7 +2,6 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.regex.*;
 
-
 public class Task implements Serializable {
 
     private int ID;
@@ -23,6 +22,7 @@ public class Task implements Serializable {
         this.executionDate = LocalDate.now();
         this.assignee = assignee;
         this.email = email;
+        this.title = "New Task / ID-" + this.ID;
         this.body = "empty";
     }
 
@@ -99,9 +99,19 @@ public class Task implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "ID: " + ID + "; priority: " + priority + "; status: " + status + "; created: " + creationDate +
-                "\n" + body + "\nAssignee: " + assignee+" email: "+email+"; production date :"+executionDate;
+    public String toString() { //  add title
+        return "ID: " + ID + " | PRI: " + priority + " | " + title + " | EXT:"+executionDate;
+    }
+
+    public String viewAllDetails(){
+        return "ID: " + ID + " | Priority: " + priority + " | Status: " + status + " | \n " +
+                "Created date: " + creationDate + "\n " +
+                "Execution date: " + executionDate + "\n " +
+                "Title: \n " +
+                title + "\n" +
+                "Body: \n " +
+                body + "\n " +
+                "Assignee name: " + assignee + " Assignee email: " + email;
     }
 
 

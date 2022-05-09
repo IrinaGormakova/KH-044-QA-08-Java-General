@@ -4,13 +4,13 @@ public class TaskCreate {
     Task task;
 
     public TaskCreate(int currentID, String assignee, String email) {
-
         this.task = new Task(currentID, assignee, email);
     }
 
-    boolean setTitle(String title){
+
+    boolean setTitle(String title) {
         title = title.trim();
-        if ( !title.matches(".{5,200}") ) {
+        if (!title.matches(".{5,200}")) {
             System.out.println("! Title should be 5-200 symbols");
             return false;
         }
@@ -18,9 +18,9 @@ public class TaskCreate {
         return true;
     }
 
-    boolean setBody(String body){
+    boolean setBody(String body) {
         body = body.trim();
-        if ( !body.matches(".{20,500}") ) {
+        if (!body.matches(".{20,500}")) {
             System.out.println("! Description should be 20-500 symbols");
             return false;
         }
@@ -28,22 +28,21 @@ public class TaskCreate {
         return true;
     }
 
-    boolean setExecutDate(String dateStr){
+    boolean setExecutDate(String dateStr) {
         dateStr = dateStr.trim();
-        if ( !dateStr.matches("\\d{4}-\\d{2}-\\d{2}") ) {
+        if (!dateStr.matches("\\d{4}-\\d{2}-\\d{2}")) {
             System.out.println("! Wrong date format");
             return false;
         }
         LocalDate executDate;
         try {
             executDate = LocalDate.parse(dateStr);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("! Date format error");
             System.out.println(e.getMessage());
             return false;
         }
-        if(executDate.isBefore(LocalDate.now())){
+        if (executDate.isBefore(LocalDate.now())) {
             System.out.println("! Execution date can`t be less than current date");
             return false;
         }
@@ -58,7 +57,7 @@ public class TaskCreate {
         try {
             priorityInt = Integer.parseInt(priorityNumber);
         } catch (Exception e) {
-            priorityInt = 1;
+            priorityInt = 0; // 0 = choose default value if catch exception
         }
 
         switch (priorityInt) {
@@ -83,6 +82,11 @@ public class TaskCreate {
         return true;
     }
 
+    boolean isDelegated() {
+        if (task.getPriority() == TaskPriority.DELEGATED) return true;
+        return false;
+    }
+
     boolean setAssignee(String assigneeName) {
         task.setAssignee(assigneeName);
         System.out.println("Assignee has been changed successfully");
@@ -90,7 +94,7 @@ public class TaskCreate {
             task.setPriority(TaskPriority.DELEGATED);
             System.out.println("Task priority has been changed to DELEGATED automatically");
         }
-        System.out.println("Please, set correct email for Assignee "+task.getAssignee());
+        System.out.println("Please, set correct email for Assignee " + task.getAssignee());
 
 //add method setEmail
 
