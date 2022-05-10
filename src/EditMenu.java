@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.ArrayList;
 
 
 public class EditMenu {
@@ -41,7 +40,10 @@ public class EditMenu {
                     myArrayTask.byPriority();
                     break;
                 case 3:
-                    System.out.println("Edit task by ID");
+                    Task mTask = myArrayTask.selectByID();
+                    if (mTask != null) {
+                        TaskEditUI.showByIDMenu(mTask, emailSender, myArrayTask.myTasksList);
+                    }
                     break;
                 case 4:
                     System.out.println("Sending report...");
