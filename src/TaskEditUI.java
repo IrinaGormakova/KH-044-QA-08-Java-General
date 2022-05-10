@@ -36,6 +36,7 @@ public class TaskEditUI {
             }
             switch (choice) {
                 case 1:
+                    System.out.println("Current priority:"+myTask.getPriority());
                     while (true){
                         System.out.println("Choose task priority:");
                         System.out.println("(Enter number of priority)");
@@ -48,6 +49,7 @@ public class TaskEditUI {
                     }
                     break;
                 case 2:
+                    System.out.println("Current execution date:"+myTask.getExecutionDate());
                     while (true) { // Date
                         System.out.println("Enter execution date:");
                         System.out.println("Date format (yyyy-mm-dd)");
@@ -59,6 +61,7 @@ public class TaskEditUI {
                     }
                     break;
                 case 3:
+                    System.out.println("Current task description:"+myTask.getBody());
                     while (true) { // Description
                         System.out.println("Enter task description:");
                         try {
@@ -69,6 +72,7 @@ public class TaskEditUI {
                     }
                     break;
                 case 4:
+                    System.out.println("Current task title:"+myTask.getTitle());
                     while (true) { // Title
                         System.out.println("Enter task title:");
                         try {
@@ -79,9 +83,10 @@ public class TaskEditUI {
                     }
                     break;
                 case 5:
-                    System.out.println("Change status");
+                    System.out.println("Current task status:"+myTask.getStatus());
                     break;
                 case 6:
+                    System.out.println("Current assignee name:"+myTask.getAssignee());
                     while (true) { // Assignee
                         System.out.println("Enter assignee name:");
                         try {
@@ -90,6 +95,7 @@ public class TaskEditUI {
                             System.out.println(e.getMessage());
                         }
                     }
+                    System.out.println("Current assignee's email:"+myTask.getEmail());
                     while (true) { // Email
                         System.out.println("Enter assignee's email or press ENTER to continue without changing:");
                         try {
@@ -101,7 +107,7 @@ public class TaskEditUI {
                     myEmailSender.sendNotification(myTask);
                     break;
                 case 7:
-                    System.out.println("Delete task");
+                    System.out.println("Deleting task...");
                     if (currentList.remove(myTask)) {
                         System.out.println("Task was deleted successfully");
                     } else {
