@@ -19,7 +19,7 @@ public class Task implements Serializable {
         this.status = TaskStatus.NEW;
         this.ID = currentID + 1;
         this.creationDate = LocalDate.now();
-        this.executionDate = LocalDate.now();
+        this.executionDate = LocalDate.now().plusDays(1);
         this.assignee = assignee;
         this.email = email;
         this.title = "New Task / ID-" + this.ID;

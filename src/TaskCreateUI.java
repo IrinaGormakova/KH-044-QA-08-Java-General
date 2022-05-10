@@ -54,17 +54,29 @@ public class TaskCreateUI {
 
         if(taskCreate.isDelegated()){
             while (true){
-                System.out.println("Enter Assignee name:");
-                break;
+                System.out.println("Enter Assignee name (3-30 symbols):");
+                try {
+                    if (taskCreate.setAssignee(bufferedReader.readLine())) break;
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
             }
 
             while (true){
                 System.out.println("Enter Assignee email:");
-                break;
+                try {
+                    if (taskCreate.setEmail(bufferedReader.readLine())) break;
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
             }
         }
 
         myArrayTask.addTask(taskCreate.task);
 
+        System.out.println("\nYou just created a new task");
+        System.out.println("\nTASK DETAILS: \n");
+        System.out.println(taskCreate.task.viewAllDetails());
+        System.out.println("\n");
     }
 }

@@ -14,7 +14,7 @@ public class TaskCreate {
         this.task = myTask;
     }
 
-    boolean setTitle(String title){
+    boolean setTitle(String title) {
         title = title.trim();
         if (!title.matches(".{5,200}")) {
             System.out.println("! Title should be 5-200 symbols");
@@ -34,7 +34,7 @@ public class TaskCreate {
         return true;
     }
 
-    boolean setExecutDate(String dateStr){
+    boolean setExecutDate(String dateStr) {
         dateStr = dateStr.trim();
         if (!dateStr.matches("\\d{4}-\\d{2}-\\d{2}")) {
             System.out.println("! Wrong date format");
@@ -88,6 +88,37 @@ public class TaskCreate {
         return true;
     }
 
+    boolean setStatus(String statusNumber) {
+        TaskStatus status;
+        int statusInt;
+        try {
+            statusInt = Integer.parseInt(statusNumber);
+        } catch (Exception e) {
+            statusInt = 0; // 0 = choose default value if catch exception
+        }
+
+        switch (statusInt) {
+            case 1:
+                status = TaskStatus.NEW;
+                break;
+            case 2:
+                status = TaskStatus.CLOSED;
+                break;
+            case 3:
+                status = TaskStatus.DONE;
+                break;
+            case 4:
+                status = TaskStatus.IN_PROGRESS;
+                break;
+            default:
+                status = task.getStatus();
+                break;
+        }
+        task.setStatus(status);
+        System.out.println("Task status set: " + status);
+        return true;
+    }
+
     boolean isDelegated() {
         if (task.getPriority() == TaskPriority.DELEGATED) return true;
         return false;
@@ -96,7 +127,7 @@ public class TaskCreate {
     boolean setAssignee(String assigneeName) {
 
         assigneeName = assigneeName.trim();
-        if ( !assigneeName.matches(".{3,30}") ) {
+        if (!assigneeName.matches(".{3,30}")) {
             System.out.println("! Assignee name should be 3-30 symbols");
             return false;
         }
@@ -114,7 +145,7 @@ public class TaskCreate {
         String pattern = "\\w+(\\.\\w+)*@(\\w+\\.)+\\w+";
         Pattern p = Pattern.compile(pattern);
 
-        emailName=emailName.trim();
+        emailName = emailName.trim();
         Matcher m = p.matcher(emailName);
         if (m.matches()) {
             task.setEmail(emailName);
