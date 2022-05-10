@@ -114,9 +114,9 @@ public class Task implements Serializable {
                 "Assignee name: " + assignee + " Assignee email: " + email;
     }
 
-
+  /*
     public void changePriority (){
-        /*
+
         boolean flag;
         byte choice=-1;
 
@@ -159,9 +159,9 @@ public class Task implements Serializable {
             default:
                 break;
         }// end switch
-*/
-    }//end changePriority
 
+    }//end changePriority
+*/
 
     public void changeEmail (){
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

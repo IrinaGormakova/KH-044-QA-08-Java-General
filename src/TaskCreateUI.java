@@ -6,8 +6,7 @@ public class TaskCreateUI {
 
     static void showUI(ArrayTasks myArrayTask) {
         TaskCreate taskCreate = new TaskCreate(myArrayTask.currentID, myArrayTask.getAuthor(), myArrayTask.getEmailAuthor());
-        SendEmails emailSender = new SendEmails(myArrayTask.getEmailAuthor(), myArrayTask.getPassword(), myArrayTask.getPassword());
-
+        SendEmails emailSender = new SendEmails(myArrayTask.getEmailAuthor(), myArrayTask.getPassword(), myArrayTask.getAuthor());
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("TASK CREATING: \n");

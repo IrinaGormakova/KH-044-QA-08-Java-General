@@ -9,15 +9,16 @@ import javax.mail.internet.MimeMultipart;
 
 public class SendEmails {
 
-    private String from = "gormakova.ira@gmail.com"; // Sender's email ID needs to be mentioned
-    private String password = "*******"; // Sender's email ID needs to be mentioned
-    private String author = "Author";
-    private final String host = "smtp.gmail.com";          // Send email from through gmails smtp
+    private final String from; // Sender's email ID needs to be mentioned
+    private final String password; // Sender's email ID needs to be mentioned
+    private final String author;
+    private final String host;     // Send email from through gmails smtp
 
     public SendEmails(String fromEmail, String password, String author) {
         this.from = fromEmail;
         this.password = password;
         this.author = author;
+        this.host = "smtp.gmail.com";
     }
 
     private Properties setSystemProperties() {
@@ -61,8 +62,7 @@ public class SendEmails {
     public void sendNotification(Task assignedTask) {
 
         // Recipient's email ID needs to be mentioned.
-        // String to = assignedTask.getEmail();
-        String to = "gormakova.ira@gmail.com";
+        String to = assignedTask.getEmail();
 
         // Get system properties
         Properties prop = setSystemProperties();
@@ -81,14 +81,13 @@ public class SendEmails {
             message.setFrom(new InternetAddress(from));
 
             // Set To: header field of the header.
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(from));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(assignedTask.getEmail()));
 
             // Set Subject: header field
             message.setSubject("Assigned task ID " + assignedTask.getID());
 
             // Set the actual message
-            String htmlContent = "<p>Dear, " + author + "</p>"
-                    + "<p>You can find csv report in attachment</p>"
+            String htmlContent = "<p>Dear, " + assignedTask.getAssignee() + "</p>"
                     + "<p>task ID: " + assignedTask.getID() + "</p>"
                     + "<p>priority: " + assignedTask.getPriority() + "</p>"
                     + "<p>status: " + assignedTask.getStatus() + "</p>"
