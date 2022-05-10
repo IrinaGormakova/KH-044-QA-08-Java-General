@@ -99,7 +99,8 @@ public class TaskEditUI {
                     while (true) { // Email
                         System.out.println("Enter assignee's email or press ENTER to continue without changing:");
                         try {
-                            if (br.readLine().equals("") || taskEdit.setEmail(br.readLine())) break;
+                            String s = br.readLine();
+                            if (s.equals("") || taskEdit.setEmail(s)) break;
                         } catch (IOException e) {
                             System.out.println(e.getMessage());
                         }

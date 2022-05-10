@@ -27,7 +27,7 @@ public class App {
         }
         if (myArrayTask == null) myArrayTask = new ArrayTasks();
         //end Deserialization
-
+        myArrayTask.editCredentials();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         do {
@@ -36,9 +36,10 @@ public class App {
                 System.out.println("Select necessary action for execution or exit");
                 System.out.println("1 - Create new task");
                 System.out.println("2 - Edit/Review tasks");
-                System.out.println("3 - Exit");
+                System.out.println("3 - Edit/Review username/password");
+                System.out.println("4 - Exit");
                 choice = Byte.parseByte(br.readLine());
-                if (choice < 1 || choice > 3) throw new MenuExceptions("Incorrect menu item");
+                if (choice < 1 || choice > 4) throw new MenuExceptions("Incorrect menu item");
             } catch (NumberFormatException | IOException e) {
                 System.out.println("Entered number is incorrect");
                 System.out.println(e.getMessage());
@@ -49,15 +50,19 @@ public class App {
             }
             switch (choice) {
                 case 1:
+
                     TaskCreateUI.showUI(myArrayTask);
                     break;
                 case 2:
                     EditMenu.showEditMenu(myArrayTask);
                     break;
+                case 3:
+                    myArrayTask.editCredentials();
+                    break;
                 default:
                     break;
             }// end switch
-        } while (flag || choice != 3);
+        } while (flag || choice != 4);
 
         try {
             br.close();

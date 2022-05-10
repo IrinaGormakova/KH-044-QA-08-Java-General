@@ -51,7 +51,7 @@ public class EditMenu {
                     break;
                 case 5:
                     System.out.println("Exporting report to csv file...");
-                    System.out.println("File " + reports.givenTasks_ToCsvFile(myArrayTask.myTasksList) + "has been created successfully");
+                    System.out.println("File " + reports.givenTasks_ToCsvFile(myArrayTask.myTasksList) + " has been created successfully");
                     break;
                 default:
                     break;

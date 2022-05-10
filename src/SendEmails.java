@@ -113,7 +113,8 @@ public class SendEmails {
 
     public void sendCsvReport(String filePath) {
 
-
+        System.out.println("From email "+from);
+        System.out.println("Password email "+password);
         // Get system properties
         Properties prop = setSystemProperties();
 
