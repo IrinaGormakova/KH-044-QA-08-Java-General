@@ -102,13 +102,13 @@ public class TaskCreate {
                 status = TaskStatus.NEW;
                 break;
             case 2:
-                status = TaskStatus.CLOSED;
+                status = TaskStatus.IN_PROGRESS;
                 break;
             case 3:
                 status = TaskStatus.DONE;
                 break;
             case 4:
-                status = TaskStatus.IN_PROGRESS;
+                status = TaskStatus.CLOSED;
                 break;
             default:
                 status = task.getStatus();
@@ -120,8 +120,7 @@ public class TaskCreate {
     }
 
     boolean isDelegated() {
-        if (task.getPriority() == TaskPriority.DELEGATED) return true;
-        return false;
+        return task.getPriority().equals(TaskPriority.DELEGATED);
     }
 
     boolean setAssignee(String assigneeName) {
