@@ -100,10 +100,10 @@ public class Task implements Serializable {
 
     @Override
     public String toString() { //  add title
-        return "ID: " + ID + " | PRI: " + priority + " | " + title + " | EXT:"+executionDate;
+        return "ID: " + ID + " | PRI: " + priority + " | " + title + " | EXT:" + executionDate;
     }
 
-    public String viewAllDetails(){
+    public String viewAllDetails() {
         return "ID: " + ID + " | Priority: " + priority + " | Status: " + status + " | \n " +
                 "Created date: " + creationDate + "\n " +
                 "Execution date: " + executionDate + "\n " +
@@ -112,82 +112,5 @@ public class Task implements Serializable {
                 "Body: \n " +
                 body + "\n " +
                 "Assignee name: " + assignee + " Assignee email: " + email;
-    }
-
-  /*
-    public void changePriority (){
-
-        boolean flag;
-        byte choice=-1;
-
-        BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Do you want to change current priority: "+this.getPriority()+"? Please, select necessary priority or press ENTER to continue without changing");
-        do {
-            flag = false;
-            try {
-                System.out.println("1 - Planned");
-                System.out.println("2 - Urgent");
-                System.out.println("3 - Delegated");
-                System.out.println("4 - Trivial");
-                String s=br1.readLine();
-                if (s.equals("")) {
-                    choice=0;
-                } else choice = Byte.parseByte(s);
-                if (choice < 0 || choice > 4) throw new MenuExceptions("Incorrect menu item");
-            } catch (NumberFormatException | IOException e) {
-                System.out.println("Entered number is incorrect");
-                System.out.println(e.getMessage());
-                flag = true;
-            } catch (MenuExceptions e1) {
-                System.out.println(e1.getMessage());
-                flag = true;
-            }
-        }  while (flag);
-        switch (choice) {
-            case 1:
-                this.setPriority("planned");
-                break;
-            case 2:
-                this.setPriority("urgent");
-                break;
-            case 3:
-                this.setPriority("delegated");
-                break;
-            case 4:
-                this.setPriority("trivial");
-                break;
-            default:
-                break;
-        }// end switch
-
-    }//end changePriority
-*/
-
-    public void changeEmail (){
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        boolean flag;
-        String pattern ="\\w+(\\.\\w+)*@(\\w+\\.)+\\w+";
-        Pattern p=Pattern.compile(pattern);
-        Matcher m;
-
-        System.out.println("Do you want to set email address for assignee?");
-        System.out.println("Please, set email or press ENTER to continue without changing");
-        do {
-            flag = false;
-            try {
-                if (!br.readLine().equals("")) {
-                   m=p.matcher(br.readLine());
-                   if (m.matches()){
-                     this.setEmail(br.readLine());
-                   } else throw new MenuExceptions("Incorrect email address. Try again or press ENTER to continue without changing");
-                }
-
-            } catch (MenuExceptions | IOException e) {
-                System.out.println(e.getMessage());
-                flag = true;
-            }
-
-        }  while (flag);
-
     }
 }

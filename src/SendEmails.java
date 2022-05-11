@@ -81,7 +81,7 @@ public class SendEmails {
             message.setFrom(new InternetAddress(from));
 
             // Set To: header field of the header.
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(assignedTask.getEmail()));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
             // Set Subject: header field
             message.setSubject("Assigned task ID " + assignedTask.getID());
@@ -113,7 +113,8 @@ public class SendEmails {
 
     public void sendCsvReport(String filePath) {
 
-
+        System.out.println("From email " + from);
+        System.out.println("Password email " + password);
         // Get system properties
         Properties prop = setSystemProperties();
 

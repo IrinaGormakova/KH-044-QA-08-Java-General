@@ -11,12 +11,11 @@ import java.util.stream.Stream;
 public class CsvReport {
 
     /**
-     *
      * @param taskToConvert
      * @return
      */
     private String convertToCSV(Task taskToConvert) {
-        String[] data= new String[]{String.valueOf(taskToConvert.getID()),
+        String[] data = new String[]{String.valueOf(taskToConvert.getID()),
                 taskToConvert.getPriority().toString(),
                 taskToConvert.getStatus().toString(),
                 taskToConvert.getCreationDate().toString(),
@@ -41,13 +40,13 @@ public class CsvReport {
     }
 
 
-    public String givenTasks_ToCsvFile(ArrayList <Task> dataForReport) {
-        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm");
+    public String givenTasks_ToCsvFile(ArrayList<Task> dataForReport) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm");
         System.out.println(LocalDateTime.now().format(formatter));
-        String fileName = "src/reports/report_"+ LocalDateTime.now().format(formatter);
+        String fileName = "src/reports/report_" + LocalDateTime.now().format(formatter);
         File csvOutputFile = new File(fileName);
 
-    if (!csvOutputFile.exists()) {
+        if (!csvOutputFile.exists()) {
             try {
                 csvOutputFile.createNewFile();
             } catch (IOException e) {
@@ -57,7 +56,7 @@ public class CsvReport {
 
         try (PrintWriter pw = new PrintWriter(csvOutputFile)) {
 
-            String header= "ID,Priority,Status,CreationDate,ExecutionDate,Body,Assignee,Email";
+            String header = "ID,Priority,Status,CreationDate,ExecutionDate,Body,Assignee,Email";
             pw.println(header);
             dataForReport.stream()
                     .map(this::convertToCSV)

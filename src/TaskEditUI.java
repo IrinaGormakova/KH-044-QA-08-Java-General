@@ -36,8 +36,8 @@ public class TaskEditUI {
             }
             switch (choice) {
                 case 1:
-                    System.out.println("Current priority:"+myTask.getPriority());
-                    while (true){
+                    System.out.println("Current priority: " + myTask.getPriority());
+                    while (true) {
                         System.out.println("Choose task priority:");
                         System.out.println("(Enter number of priority)");
                         System.out.println("[1]-PLANNED | [2]-URGENT | [3]-DELEGATED | [4]-TRIVIAL");
@@ -49,7 +49,7 @@ public class TaskEditUI {
                     }
                     break;
                 case 2:
-                    System.out.println("Current execution date:"+myTask.getExecutionDate());
+                    System.out.println("Current execution date: " + myTask.getExecutionDate());
                     while (true) { // Date
                         System.out.println("Enter execution date:");
                         System.out.println("Date format (yyyy-mm-dd)");
@@ -61,7 +61,7 @@ public class TaskEditUI {
                     }
                     break;
                 case 3:
-                    System.out.println("Current task description:"+myTask.getBody());
+                    System.out.println("Current task description: " + myTask.getBody());
                     while (true) { // Description
                         System.out.println("Enter task description:");
                         try {
@@ -72,7 +72,7 @@ public class TaskEditUI {
                     }
                     break;
                 case 4:
-                    System.out.println("Current task title:"+myTask.getTitle());
+                    System.out.println("Current task title: " + myTask.getTitle());
                     while (true) { // Title
                         System.out.println("Enter task title:");
                         try {
@@ -83,23 +83,34 @@ public class TaskEditUI {
                     }
                     break;
                 case 5:
-                    System.out.println("Current task status:"+myTask.getStatus());
+                    System.out.println("Current task status: " + myTask.getStatus());
+                    while (true) {
+                        System.out.println("Choose task status:");
+                        System.out.println("(Enter number of status)");
+                        System.out.println("[1]-NEW | [2]-IN_PROGRESS | [3]-DONE | [4]-CLOSED");
+                        try {
+                            if (taskEdit.setStatus(br.readLine())) break;
+                        } catch (IOException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
                     break;
                 case 6:
-                    System.out.println("Current assignee name:"+myTask.getAssignee());
+                    System.out.println("Current assignee name:" + myTask.getAssignee());
                     while (true) { // Assignee
-                        System.out.println("Enter assignee name:");
+                        System.out.println("Enter Assignee name (3-30 symbols):");
                         try {
                             if (taskEdit.setAssignee(br.readLine())) break;
                         } catch (IOException e) {
                             System.out.println(e.getMessage());
                         }
                     }
-                    System.out.println("Current assignee's email:"+myTask.getEmail());
+                    System.out.println("Current assignee's email:" + myTask.getEmail());
                     while (true) { // Email
                         System.out.println("Enter assignee's email or press ENTER to continue without changing:");
                         try {
-                            if (br.readLine().equals("") || taskEdit.setEmail(br.readLine())) break;
+                            String s = br.readLine();
+                            if (s.equals("") || taskEdit.setEmail(s)) break;
                         } catch (IOException e) {
                             System.out.println(e.getMessage());
                         }

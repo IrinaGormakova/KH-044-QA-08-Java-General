@@ -12,10 +12,10 @@ public class SendEmail {
     public static void main(String[] args) {
 
         // Recipient's email ID needs to be mentioned.
-        String to = "email@gmail.com";
+        String to = "gormakova.ira@gmail.com";
 
         // Sender's email ID needs to be mentioned
-        String from = "email@gmail.com";
+        String from = "gormakova.ira@gmail.com";
 
         // Assuming you are sending email from through gmails smtp
         String host = "smtp.gmail.com";
@@ -26,7 +26,7 @@ public class SendEmail {
         // Setup mail server
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.auth", "true");
-
+ /*
         //TLS
         properties.put("mail.smtp.port", "587");
         properties.put("mail.smtp.starttls.enable", "true");
@@ -35,14 +35,14 @@ public class SendEmail {
         properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
         //properties.put("properties.transport.protocol", "smtps");
 
-         /*
+       */
         //SSL
         properties.put("mail.smtp.port", "465");
         properties.put("mail.smtp.socketFactory.port", "465");
         properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
         properties.put("mail.smtp.ssl.enable", "true");
-        */
+        properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 
 
         // Get the Session object.// and pass username and password
@@ -50,7 +50,7 @@ public class SendEmail {
 
             protected PasswordAuthentication getPasswordAuthentication() {
 
-                return new PasswordAuthentication("email@gmail.com", "****");
+                return new PasswordAuthentication("gormakova.ira@gmail.com", "iooxodkepeempgqc");
 
             }
 
