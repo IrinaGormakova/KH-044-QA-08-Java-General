@@ -12,7 +12,7 @@ public class ArrayTasks implements Serializable {
     public int currentID = 0;
     private String author = "Irina Gormakova";
     private String emailAuthor = "gormakova.ira@gmail.com";
-    private String password = "-";
+    private transient String password = "-";
 
     public String getAuthor() {
         return author;
@@ -38,9 +38,9 @@ public class ArrayTasks implements Serializable {
         this.password = password;
     }
 
-    public void addTask(Task newTask) {
-        myTasksList.add(newTask);
+    public boolean addTask(Task newTask) {
         currentID++;
+        return myTasksList.add(newTask);
     }
 
     public void reviewAll() {
