@@ -44,15 +44,34 @@ public class ArrayTasks implements Serializable {
     }
 
     public void reviewAll() {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        boolean flag;
+        int ID;
+        System.out.println("Full task list: ");
         myTasksList
                 .forEach(System.out::println);
-        System.out.println("Which id would you like to see more detailed enter id number");
-        int id = 0;
-        Scanner scanner = new Scanner(System.in);
-        id = scanner.nextInt();
-        int finalId = id;
-        myTasksList.stream()
-                .filter(x -> x.getID() == finalId).peek(x -> System.out.println(x.toString()));
+        do {
+            flag=false;
+            System.out.println("Which id would you like to see more detailed enter id number or press enter to leave");
+            try {
+                String str = br.readLine();
+                if (str.equals("")){
+                    return;
+                }else ID=Integer.parseInt(str);
+            }
+            catch(IOException e) {
+                System.out.println(e.getMessage());
+                ID=0;
+            }
+            int finalID = ID;
+            if (myTasksList.stream().noneMatch(x -> x.getID() == finalID)) {
+                System.out.println("Task ID " + finalID + " wasn't found");
+                flag=true;
+            }
+
+        }while (flag);
+        int finalID1 = ID;
+        myTasksList.stream().filter(x->x.getID()==finalID1).forEach(x->System.out.println(x.viewAllDetails()));
     }
 
     public void byPriority() {
@@ -81,38 +100,76 @@ public class ArrayTasks implements Serializable {
         } while (flag);
         switch (choice) {
             case 1:
-                myTasksList.stream()
-                        .filter(x -> x.getPriority().equals(TaskPriority.PLANNED))
-                        .forEach(System.out::println);
-                System.out.println(" ");
+                if (myTasksList.stream().noneMatch(x -> x.getPriority()==TaskPriority.PLANNED)) {
+                    System.out.println("Tasks with priority planned not created yet");
+                    return;
+                }else {
+                    myTasksList.stream()
+                            .filter(x -> x.getPriority().equals(TaskPriority.PLANNED))
+                            .forEach(System.out::println);
+                    System.out.println(" ");
+                }
                 break;
             case 2:
-                myTasksList.stream()
-                        .filter(x -> x.getPriority().equals(TaskPriority.URGENT))
-                        .forEach(System.out::println);
-                System.out.println(" ");
+                if (myTasksList.stream().noneMatch(x -> x.getPriority()==TaskPriority.URGENT)) {
+                    System.out.println("Tasks with priority planned not created yet");
+                    return;
+                }else {
+                    myTasksList.stream()
+                            .filter(x -> x.getPriority().equals(TaskPriority.URGENT))
+                            .forEach(System.out::println);
+                    System.out.println(" ");
+                }
                 break;
             case 3:
-                myTasksList.stream()
-                        .filter(x -> x.getPriority().equals(TaskPriority.DELEGATED))
-                        .forEach(System.out::println);
-                System.out.println(" ");
+                if (myTasksList.stream().noneMatch(x -> x.getPriority()==TaskPriority.DELEGATED)) {
+                    System.out.println("Tasks with priority planned not created yet");
+                    return;
+                }else {
+                    myTasksList.stream()
+                            .filter(x -> x.getPriority().equals(TaskPriority.DELEGATED))
+                            .forEach(System.out::println);
+                    System.out.println(" ");
+                }
                 break;
             case 4:
-                myTasksList.stream()
-                        .filter(x -> x.getPriority().equals(TaskPriority.TRIVIAL))
-                        .forEach(System.out::println);
-                System.out.println(" ");
+                if (myTasksList.stream().noneMatch(x -> x.getPriority()==TaskPriority.TRIVIAL)) {
+                    System.out.println("Tasks with priority planned not created yet");
+                    return;
+                }else {
+                    myTasksList.stream()
+                            .filter(x -> x.getPriority().equals(TaskPriority.TRIVIAL))
+                            .forEach(System.out::println);
+                    System.out.println(" ");
+                }
                 break;
             default:
                 break;
         }
-        int id = 0;
-        Scanner scanner = new Scanner(System.in);
-        id = scanner.nextInt();
-        int finalId = id;
-        myTasksList.stream()
-                .filter(x -> x.getID() == finalId).peek(x -> System.out.println(x.toString()));
+        boolean flag1;
+        int ID;
+        do {
+            flag1=false;
+            System.out.println("Which id would you like to see more detailed enter id number or press enter to leave");
+            try {
+                String str = br1.readLine();
+                if (str.equals("")){
+                    return;
+                }else ID=Integer.parseInt(str);
+            }
+            catch(IOException e) {
+                System.out.println(e.getMessage());
+                ID=0;
+            }
+            int finalID = ID;
+            if (myTasksList.stream().noneMatch(x -> x.getID() == finalID)) {
+                System.out.println("Task ID " + finalID + " wasn't found");
+                flag1=true;
+            }
+
+        }while (flag1);
+        int finalID1 = ID;
+        myTasksList.stream().filter(x->x.getID()==finalID1).forEach(x->System.out.println(x.viewAllDetails()));
     }
 
 
@@ -190,7 +247,7 @@ public class ArrayTasks implements Serializable {
                 setPassword(s);
                 System.out.println("Password has been changed successfully");
             }
-        } catch (IOException e) {
+         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
