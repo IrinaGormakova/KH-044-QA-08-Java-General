@@ -12,7 +12,7 @@ public class ArrayTasks implements Serializable {
     public int currentID = 0;
     private String author = "Irina Gormakova";
     private String emailAuthor = "gormakova.ira@gmail.com";
-    private transient String password = "-";
+    private transient String password;
 
     public String getAuthor() {
         return author;
@@ -47,12 +47,12 @@ public class ArrayTasks implements Serializable {
         myTasksList
                 .forEach(System.out::println);
         System.out.println("Which id would you like to see more detailed enter id number");
-        int id = 0;
-        Scanner scanner = new Scanner(System.in);
-        id = scanner.nextInt();
-        int finalId = id;
+//        int id = 0;
+//        Scanner scanner = new Scanner(System.in);
+//        id = scanner.nextInt();
+//        int finalId = id;
         myTasksList.stream()
-                .filter(x -> x.getID() == finalId).peek(x -> System.out.println(x.toString()));
+                .filter(x -> x.getID() == 1).forEach(x -> System.out.println(x.viewAllDetails()));
     }
 
     public void byPriority() {

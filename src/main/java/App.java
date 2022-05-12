@@ -20,6 +20,7 @@ public class App {
             try {
                 ObjectInputStream istream = new ObjectInputStream(new FileInputStream(file));
                 myArrayTask = (ArrayTasks) istream.readObject();
+                myArrayTask.setPassword("-");
                 istream.close();
             } catch (ClassNotFoundException | IOException e) {
                 System.err.println(e.getMessage());
@@ -33,7 +34,7 @@ public class App {
         do {
             flag = false;
             try {
-                System.out.println("Select necessary action for execution or exit");
+                System.out.println("\nSelect necessary action for execution or exit");
                 System.out.println("1 - Create new task");
                 System.out.println("2 - Edit/Review tasks");
                 System.out.println("3 - Edit/Review username/password");

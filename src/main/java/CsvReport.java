@@ -43,7 +43,7 @@ public class CsvReport {
     public String givenTasks_ToCsvFile(ArrayList<Task> dataForReport) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm");
         System.out.println(LocalDateTime.now().format(formatter));
-        String fileName = "src/reports/report_" + LocalDateTime.now().format(formatter);
+        String fileName = "src/main/java/reports/report_" + LocalDateTime.now().format(formatter);
         File csvOutputFile = new File(fileName);
 
         if (!csvOutputFile.exists()) {
