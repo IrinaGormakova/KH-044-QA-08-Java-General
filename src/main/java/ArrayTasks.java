@@ -49,7 +49,7 @@ public class ArrayTasks implements Serializable {
             System.out.println("Which id would you like to see more detailed? Set id number or press ENTER to leave");
             try {
                 String str = br.readLine();
-                if (str.equals("")) {
+                if (str.isBlank()) {
                     break;
                 } else ID = Integer.parseInt(str);
             } catch (IOException e) {
@@ -144,7 +144,7 @@ public class ArrayTasks implements Serializable {
             System.out.println("Which id would you like to see more detailed enter id number or press enter to leave");
             try {
                 String str = br1.readLine();
-                if (str.equals("")) {
+                if (str.isBlank()) {
                     return;
                 } else ID = Integer.parseInt(str);
             } catch (IOException e) {
@@ -177,7 +177,7 @@ public class ArrayTasks implements Serializable {
             System.out.println("Please, enter ID of task you want to modify or press ENTER to continue without changing");
             try {
                 String s = br.readLine();
-                if (!s.equals("")) {
+                if (!s.isBlank()) {
                     modifiedID = Integer.parseInt(s);
                 } else return null;
             } catch (IOException e) {
@@ -203,7 +203,7 @@ public class ArrayTasks implements Serializable {
         System.out.println("Enter new Author name or press ENTER to continue without changing");
         try {
             s = br.readLine();
-            if (!s.equals("")) {
+            if (!s.isBlank()) {
                 setAuthor(s);
             }
         } catch (IOException e) {
@@ -213,7 +213,7 @@ public class ArrayTasks implements Serializable {
         System.out.println("Enter new Author's email or press ENTER to continue without changing");
         try {
             s = br.readLine();
-            if (!s.equals("")) {
+            if (!s.isBlank()) {
                 String pattern = "\\w+(\\.\\w+)*@(\\w+\\.)+\\w+";
                 Pattern p = Pattern.compile(pattern);
 
@@ -235,7 +235,7 @@ public class ArrayTasks implements Serializable {
         if ((console=System.console())!= null) {
             char [] password = console.readPassword("Enter new Password or press ENTER to continue without changing: ");
             s = String.valueOf(password);
-            if (!s.equals("")) {
+            if (!s.isBlank()) {
                 setPassword(s);
                 System.out.println("Password has been changed successfully");
             }
