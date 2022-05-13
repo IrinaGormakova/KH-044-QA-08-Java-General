@@ -21,7 +21,6 @@ public class EditMenu {
                 System.out.println("4 - Send reports");
                 System.out.println("5 - Export to file");
                 System.out.println("6 - Exit");
-                System.out.println("\n");
                 choice2 = Byte.parseByte(br.readLine());
                 if (choice2 < 1 || choice2 > 6) throw new MenuExceptions("Incorrect menu item");
             } catch (NumberFormatException | IOException e) {

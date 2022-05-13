@@ -26,8 +26,8 @@ public class TaskCreate {
 
     boolean setBody(String body) {
         body = body.trim();
-        if (!body.matches(".{20,500}")) {
-            System.out.println("! Description should be 20-500 symbols");
+        if (!body.matches(".{5,500}")) {
+            System.out.println("! Description should be 5-500 symbols");
             return false;
         }
         task.setBody(body);

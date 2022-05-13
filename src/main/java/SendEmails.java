@@ -71,7 +71,7 @@ public class SendEmails {
         Session session = getSession(prop);
 
         // Used to debug SMTP issues
-        session.setDebug(true);
+//        session.setDebug(true);
 
         try {
             // Create a default MimeMessage object.
@@ -101,7 +101,7 @@ public class SendEmails {
 
             message.setContent(multiPart);
 
-            System.out.println("sending...");
+            System.out.println("Sending...");
             // Send message
             Transport.send(message);
             System.out.println("Sent notification successfully....");
@@ -113,8 +113,6 @@ public class SendEmails {
 
     public void sendCsvReport(String filePath) {
 
-        System.out.println("From email " + from);
-        System.out.println("Password email " + password);
         // Get system properties
         Properties prop = setSystemProperties();
 
@@ -122,7 +120,7 @@ public class SendEmails {
         Session session = getSession(prop);
 
         // Used to debug SMTP issues
-        session.setDebug(true);
+//        session.setDebug(true);
 
         try {
             // Create a default MimeMessage object.
@@ -166,7 +164,7 @@ public class SendEmails {
 
             message.setContent(multiPart);
 
-            System.out.println("sending...");
+            System.out.println("Sending...");
             // Send message
             Transport.send(message);
             System.out.println("Sent message successfully....");

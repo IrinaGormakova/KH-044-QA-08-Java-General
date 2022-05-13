@@ -23,7 +23,6 @@ public class TaskEditUI {
                 System.out.println("6 - Change assignee");
                 System.out.println("7 - Delete task");
                 System.out.println("8 - Exit");
-                System.out.println("\n");
                 choice = Byte.parseByte(br.readLine());
                 if (choice < 1 || choice > 8) throw new MenuExceptions("Incorrect menu item");
             } catch (NumberFormatException | IOException e) {
