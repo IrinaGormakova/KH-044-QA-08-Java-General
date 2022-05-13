@@ -88,6 +88,7 @@ public class SendEmails {
 
             // Set the actual message
             String htmlContent = "<p>Dear, " + assignedTask.getAssignee() + "</p>"
+                    + "<p>The next task was assigned to you by " + author + "</p>"
                     + "<p>task ID: " + assignedTask.getID() + "</p>"
                     + "<p>priority: " + assignedTask.getPriority() + "</p>"
                     + "<p>status: " + assignedTask.getStatus() + "</p>"

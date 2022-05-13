@@ -78,7 +78,6 @@ public class TaskCreateUI {
             System.out.println("\nYou just created a new task");
             System.out.println("\nTASK DETAILS: \n");
             System.out.println(taskCreate.task.viewAllDetails());
-            System.out.println("\n");
         } else {
             System.out.println("Something went wrong");
         }

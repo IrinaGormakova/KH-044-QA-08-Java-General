@@ -42,27 +42,30 @@ public class ArrayTasks implements Serializable {
     public void reviewAll() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int ID;
-        System.out.println("Full task list: ");
-        myTasksList
-                .forEach(System.out::println);
-        while (true){
-            System.out.println("Which id would you like to see more detailed? Set id number or press ENTER to leave");
-            try {
-                String str = br.readLine();
-                if (str.isBlank()) {
-                    break;
-                } else ID = Integer.parseInt(str);
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-                ID = 0;
+        if (myTasksList.size() != 0) {
+            System.out.println("Full task list: ");
+            myTasksList
+                    .forEach(System.out::println);
+            while (true) {
+                System.out.println("Which id would you like to see more detailed? Set id number or press ENTER to leave");
+                try {
+                    String str = br.readLine();
+                    if (str.isBlank()) {
+                        break;
+                    } else ID = Integer.parseInt(str);
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                    ID = 0;
+                }
+                int finalID = ID;
+                if (myTasksList.stream().noneMatch(x -> x.getID() == finalID)) {
+                    System.out.println("Task ID " + finalID + " wasn't found");
+                } else {
+                    myTasksList.stream().filter(x -> x.getID() == finalID).forEach(x -> System.out.println(x.viewAllDetails()));
+                }
             }
-            int finalID = ID;
-            if (myTasksList.stream().noneMatch(x -> x.getID() == finalID)) {
-                System.out.println("Task ID " + finalID + " wasn't found");
-            } else {
-                myTasksList.stream().filter(x -> x.getID() == finalID).forEach(x -> System.out.println(x.viewAllDetails()));
-            }
-        }
+        } else
+            System.out.println("Task list is empty");
     }
 
     public void byPriority() {
@@ -74,10 +77,10 @@ public class ArrayTasks implements Serializable {
         do {
             flag = false;
             try {
-                System.out.println("1 - Planned");
-                System.out.println("2 - Urgent");
-                System.out.println("3 - Delegated");
-                System.out.println("4 - Trivial");
+                System.out.println("[1] - Planned");
+                System.out.println("[2] - Urgent");
+                System.out.println("[3] - Delegated");
+                System.out.println("[4] - Trivial");
                 choice = Byte.parseByte(br1.readLine());
                 if (choice < 1 || choice > 4) throw new MenuExceptions("Incorrect menu item");
             } catch (NumberFormatException | IOException e) {
@@ -103,7 +106,7 @@ public class ArrayTasks implements Serializable {
                 break;
             case 2:
                 if (myTasksList.stream().noneMatch(x -> x.getPriority() == TaskPriority.URGENT)) {
-                    System.out.println("Tasks with priority planned not created yet");
+                    System.out.println("Tasks with priority urgent not created yet");
                     return;
                 } else {
                     myTasksList.stream()
@@ -114,7 +117,7 @@ public class ArrayTasks implements Serializable {
                 break;
             case 3:
                 if (myTasksList.stream().noneMatch(x -> x.getPriority() == TaskPriority.DELEGATED)) {
-                    System.out.println("Tasks with priority planned not created yet");
+                    System.out.println("Tasks with priority delegated not created yet");
                     return;
                 } else {
                     myTasksList.stream()
@@ -125,7 +128,7 @@ public class ArrayTasks implements Serializable {
                 break;
             case 4:
                 if (myTasksList.stream().noneMatch(x -> x.getPriority() == TaskPriority.TRIVIAL)) {
-                    System.out.println("Tasks with priority planned not created yet");
+                    System.out.println("Tasks with priority trivial not created yet");
                     return;
                 } else {
                     myTasksList.stream()
@@ -137,10 +140,9 @@ public class ArrayTasks implements Serializable {
             default:
                 break;
         }
-        boolean flag1;
         int ID;
         do {
-            flag1 = false;
+            flag = false;
             System.out.println("Which id would you like to see more detailed enter id number or press enter to leave");
             try {
                 String str = br1.readLine();
@@ -154,10 +156,10 @@ public class ArrayTasks implements Serializable {
             int finalID = ID;
             if (myTasksList.stream().noneMatch(x -> x.getID() == finalID)) {
                 System.out.println("Task ID " + finalID + " wasn't found");
-                flag1 = true;
+                flag = true;
             }
 
-        } while (flag1);
+        } while (flag);
         int finalID1 = ID;
         myTasksList.stream().filter(x -> x.getID() == finalID1).forEach(x -> System.out.println(x.viewAllDetails()));
     }
@@ -232,14 +234,34 @@ public class ArrayTasks implements Serializable {
         System.out.println("Password: " + getPassword());
 
         Console console;
-        if ((console=System.console())!= null) {
-            char [] password = console.readPassword("Enter new Password or press ENTER to continue without changing: ");
+        if ((console = System.console()) != null) {
+            char[] password = console.readPassword("Enter new Password or press ENTER to continue without changing: ");
             s = String.valueOf(password);
             if (!s.isBlank()) {
                 setPassword(s);
                 System.out.println("Password has been changed successfully");
             }
         } else System.out.println("Console is null");
+    }
+
+    public void deleteList() {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String s;
+        if (myTasksList.size() != 0) {
+            System.out.println("Are you sure you want to remove all " + myTasksList.size() + " tasks?");
+            System.out.println("[Y] - remove tasks; [not Y] - continue without changing ");
+            try {
+                s = br.readLine();
+                s = s.trim().toLowerCase();
+                if (s.equals("y")) {
+                    myTasksList.clear();
+                    System.out.println("Tasks were deleted successfully");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else
+            System.out.println("Task list is empty");
     }
 }
 

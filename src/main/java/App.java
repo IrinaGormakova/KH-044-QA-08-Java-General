@@ -26,7 +26,10 @@ public class App {
                 System.err.println(e.getMessage());
             }
         }
-        if (myArrayTask == null) myArrayTask = new ArrayTasks();
+        if (myArrayTask == null) {
+            myArrayTask = new ArrayTasks();
+            myArrayTask.setPassword("-");
+        }
         //end Deserialization
         myArrayTask.editCredentials();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -35,10 +38,10 @@ public class App {
             flag = false;
             try {
                 System.out.println("\nSelect necessary action for execution or exit");
-                System.out.println("1 - Create new task");
-                System.out.println("2 - Edit/Review tasks");
-                System.out.println("3 - Edit/Review username/password");
-                System.out.println("4 - Exit");
+                System.out.println("[1] - Create new task");
+                System.out.println("[2] - Edit/Review tasks");
+                System.out.println("[3] - Edit/Review username/password");
+                System.out.println("[4] - Exit");
                 choice = Byte.parseByte(br.readLine());
                 if (choice < 1 || choice > 4) throw new MenuExceptions("Incorrect menu item");
             } catch (NumberFormatException | IOException e) {
