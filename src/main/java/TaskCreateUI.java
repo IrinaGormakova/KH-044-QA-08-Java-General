@@ -22,7 +22,7 @@ public class TaskCreateUI {
         }
 
         while (true) { // Body
-            System.out.println("Enter task description (20-500 symbols):");
+            System.out.println("Enter task description (5-500 symbols):");
             try {
                 if (taskCreate.setBody(bufferedReader.readLine())) break;
             } catch (IOException ex) {

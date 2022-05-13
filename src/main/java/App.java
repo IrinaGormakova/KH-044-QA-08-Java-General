@@ -51,7 +51,6 @@ public class App {
             }
             switch (choice) {
                 case 1:
-
                     TaskCreateUI.showUI(myArrayTask);
                     break;
                 case 2:
