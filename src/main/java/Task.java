@@ -105,12 +105,11 @@ public class Task implements Serializable {
 
     public String viewAllDetails() {
         return "ID: " + ID + " | Priority: " + priority + " | Status: " + status + " | \n " +
-                "Created date: " + creationDate + "\n " +
+                "Creation date: " + creationDate + "\n " +
                 "Execution date: " + executionDate + "\n " +
-                "Title: \n " +
-                title + "\n" +
+                "Title: " + title + "\n" +
                 "Description: \n " +
                 body + "\n " +
-                "Assignee name: " + assignee + " Assignee email: " + email;
+                "Assignee name: " + assignee + " | Assignee email: " + email;
     }
 }

@@ -15,14 +15,15 @@ public class EditMenu {
 
             try {
                 System.out.println("Edit menu:");
-                System.out.println("1 - Review all tasks");
-                System.out.println("2 - Review tasks by priority");
-                System.out.println("3 - Edit task by ID");
-                System.out.println("4 - Send reports");
-                System.out.println("5 - Export to file");
-                System.out.println("6 - Exit");
+                System.out.println("[1] - Review all tasks");
+                System.out.println("[2] - Review tasks by priority");
+                System.out.println("[3] - Edit task by ID");
+                System.out.println("[4] - Send reports");
+                System.out.println("[5] - Export to file");
+                System.out.println("[6] - Remove all tasks");
+                System.out.println("[7] - Exit");
                 choice2 = Byte.parseByte(br.readLine());
-                if (choice2 < 1 || choice2 > 6) throw new MenuExceptions("Incorrect menu item");
+                if (choice2 < 1 || choice2 > 7) throw new MenuExceptions("Incorrect menu item");
             } catch (NumberFormatException | IOException e) {
                 System.out.println("Entered number is incorrect");
                 System.out.println(e.getMessage());
@@ -45,17 +46,26 @@ public class EditMenu {
                     }
                     break;
                 case 4:
-                    System.out.println("Sending report...");
-                    emailSender.sendCsvReport(reports.givenTasks_ToCsvFile(myArrayTask.myTasksList));
+                    if (myArrayTask.myTasksList.size() != 0) {
+                        System.out.println("Sending report...");
+                        emailSender.sendCsvReport(reports.givenTasks_ToCsvFile(myArrayTask.myTasksList));
+                    } else
+                        System.out.println("Task list is empty");
                     break;
                 case 5:
+                    if (myArrayTask.myTasksList.size() != 0) {
                     System.out.println("Exporting report to csv file...");
                     System.out.println("File " + reports.givenTasks_ToCsvFile(myArrayTask.myTasksList) + " has been created successfully");
+                    } else
+                        System.out.println("Task list is empty");
+                    break;
+                case 6:
+                    myArrayTask.deleteList();
                     break;
                 default:
                     break;
             }// end switch
-        } while (flag || choice2 != 6);
+        } while (flag || choice2 != 7);
 
     }
 }
