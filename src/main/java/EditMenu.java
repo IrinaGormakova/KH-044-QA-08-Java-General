@@ -26,7 +26,6 @@ public class EditMenu {
                 if (choice2 < 1 || choice2 > 7) throw new MenuExceptions("Incorrect menu item");
             } catch (NumberFormatException | IOException e) {
                 System.out.println("Entered number is incorrect");
-                System.out.println(e.getMessage());
                 flag = true;
             } catch (MenuExceptions e1) {
                 System.out.println(e1.getMessage());

@@ -15,19 +15,18 @@ public class TaskEditUI {
 
             try {
                 System.out.println("What do you want to change in task ID " + myTask.getID() + "?");
-                System.out.println("1 - Change priority");
-                System.out.println("2 - Change execution data");
-                System.out.println("3 - Change body of task");
-                System.out.println("4 - Change title");
-                System.out.println("5 - Change status");
-                System.out.println("6 - Change assignee");
-                System.out.println("7 - Delete task");
-                System.out.println("8 - Exit");
+                System.out.println("[1] - Change priority");
+                System.out.println("[2] - Change execution data");
+                System.out.println("[3] - Change body of task");
+                System.out.println("[4] - Change title");
+                System.out.println("[5] - Change status");
+                System.out.println("[6] - Change assignee");
+                System.out.println("[7] - Delete task");
+                System.out.println("[8] - Exit");
                 choice = Byte.parseByte(br.readLine());
                 if (choice < 1 || choice > 8) throw new MenuExceptions("Incorrect menu item");
             } catch (NumberFormatException | IOException e) {
                 System.out.println("Entered number is incorrect");
-                System.out.println(e.getMessage());
                 flag = true;
             } catch (MenuExceptions e1) {
                 System.out.println(e1.getMessage());
@@ -105,10 +104,11 @@ public class TaskEditUI {
                         }
                     }
                     System.out.println("Current assignee's email:" + myTask.getEmail());
+                    String s;
                     while (true) { // Email
                         System.out.println("Enter assignee's email or press ENTER to continue without changing:");
                         try {
-                            String s = br.readLine();
+                            s = br.readLine();
                             if (s.isBlank() || taskEdit.setEmail(s)) break;
                         } catch (IOException e) {
                             System.out.println(e.getMessage());

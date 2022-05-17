@@ -53,8 +53,8 @@ public class ArrayTasks implements Serializable {
                     if (str.isBlank()) {
                         break;
                     } else ID = Integer.parseInt(str);
-                } catch (IOException e) {
-                    System.out.println(e.getMessage());
+                } catch (NumberFormatException | IOException e) {
+                    System.out.println("Entered number is incorrect");
                     ID = 0;
                 }
                 int finalID = ID;
@@ -85,7 +85,6 @@ public class ArrayTasks implements Serializable {
                 if (choice < 1 || choice > 4) throw new MenuExceptions("Incorrect menu item");
             } catch (NumberFormatException | IOException e) {
                 System.out.println("Entered number is incorrect");
-                System.out.println(e.getMessage());
                 flag = true;
             } catch (MenuExceptions e1) {
                 System.out.println(e1.getMessage());
@@ -149,8 +148,8 @@ public class ArrayTasks implements Serializable {
                 if (str.isBlank()) {
                     return;
                 } else ID = Integer.parseInt(str);
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
+            } catch (NumberFormatException | IOException e) {
+                System.out.println("Entered number is incorrect");
                 ID = 0;
             }
             int finalID = ID;
@@ -170,9 +169,15 @@ public class ArrayTasks implements Serializable {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         boolean flag;
 
-        System.out.println("Full task list:");
-        myTasksList
-                .forEach(System.out::println);
+        if (myTasksList.size() != 0){
+            System.out.println("Full task list:");
+            myTasksList
+                    .forEach(System.out::println);
+        } else {
+            System.out.println("Task list is empty");
+            return null;
+        }
+
         int modifiedID;
         do {
             flag = false;
@@ -182,8 +187,8 @@ public class ArrayTasks implements Serializable {
                 if (!s.isBlank()) {
                     modifiedID = Integer.parseInt(s);
                 } else return null;
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
+            } catch (NumberFormatException | IOException e) {
+                System.out.println("Entered number is incorrect");
                 modifiedID = 0;
             }
             int finalModifiedID = modifiedID;

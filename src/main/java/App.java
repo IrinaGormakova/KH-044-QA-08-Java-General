@@ -46,7 +46,6 @@ public class App {
                 if (choice < 1 || choice > 4) throw new MenuExceptions("Incorrect menu item");
             } catch (NumberFormatException | IOException e) {
                 System.out.println("Entered number is incorrect");
-                System.out.println(e.getMessage());
                 flag = true;
             } catch (MenuExceptions e1) {
                 System.out.println(e1.getMessage());
