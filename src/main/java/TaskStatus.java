@@ -6,4 +6,10 @@ public enum TaskStatus {
         String priorityName = super.toString();
         return priorityName.charAt(0) + priorityName.substring(1).toLowerCase();
     }
+
+    public static TaskStatus getStatus(String status) {
+        return Arrays.stream(TaskStatus.values())
+                .filter(st -> st.toString().equalsIgnoreCase(status)).findFirst().orElseThrow();
+    }
+
 }
